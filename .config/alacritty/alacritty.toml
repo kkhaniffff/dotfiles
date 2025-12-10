@@ -1,0 +1,8 @@
+[window]
+decorations = "None"
+opacity = 0.9
+
+[general]
+import = [
+    "~/.config/alacritty/catppuccin-frappe.toml"
+]
