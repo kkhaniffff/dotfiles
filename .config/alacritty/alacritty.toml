@@ -1,3 +1,7 @@
+[font]
+normal = { family = "CommitMono", style = "Regular" }
+size = 11
+
 [window]
 decorations = "None"
 opacity = 0.9

@@ -14,7 +14,7 @@ if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
     exit 1
 fi
 
-PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle waybar bemenu mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr"
+PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle waybar bemenu mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr unzip"
 
 echo "Installing base packages."
 sudo apt-get update >/dev/null
@@ -62,6 +62,18 @@ if test "$TTY1" = "/dev/tty1"
     end
 end
 EOF
+
+echo "Installing fonts."
+curl -sLO https://github.com/eigilnikolajsen/commit-mono/releases/download/v1.143/CommitMono-1.143.zip >/dev/null
+unzip CommitMono-1.143.zip >/dev/null
+mkdir -p "$HOME/.local/share/fonts"
+cp CommitMono*/*.otf "$HOME/.local/share/fonts/"
+rm -r CommitMono*
+curl -sLO https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip >/dev/null
+unzip NerdFontsSymbolsOnly.zip -d NerdFonts/ >/dev/null
+cp NerdFonts/SymbolsNerdFont* .local/share/fonts/
+rm -r NerdFonts*
+fc-cache -f -v >/dev/null
 
 echo "Cloning dotfiles."
 git clone --bare https://github.com/kkhaniffff/dotfiles.git "$HOME/.dotfiles" >/dev/null

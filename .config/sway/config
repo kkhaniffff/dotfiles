@@ -1,3 +1,6 @@
+### Font
+font pango:CommitMono 10
+
 ### Variables
 
 set $mod Mod4
