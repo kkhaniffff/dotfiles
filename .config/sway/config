@@ -1,0 +1,173 @@
+### Font
+
+font pango:CommitMono 10
+
+### Theme
+
+# target                title    bg      text      indicator  border
+client.focused          #9b8d7f  #9b8d7f #000000   #9b8d7f    #9b8d7f
+client.focused_inactive #202020  #202020 #9b8d7f   #202020    #202020
+client.unfocused        #202020  #202020 #9b8d7f   #202020    #202020
+
+### Window decorations
+
+for_window [app_id=".*"] border pixel 2
+for_window [title="GPG Pinentry"] floating enable, move position center, resize set 800 400
+
+### Variables
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term foot
+set $browser firefox
+set $menu wmenu-run -i -p "Run app:" -f "pango:CommitMono 12"
+
+### Output configuration
+
+output * bg $HOME/.wallpaper fill
+
+### Idle configuration
+
+exec swayidle -w \
+         timeout 300 'swaylock -f' \
+         timeout 600 'playerctl pause; swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f'
+
+### Input configuration
+
+input "type:keyboard" {
+    xkb_layout us,ru
+    xkb_options caps:escape,grp:alt_shift_toggle
+    repeat_delay 200
+    repeat_rate 30
+}
+
+### Key bindings
+
+# Apps
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+b exec $browser
+
+# System menu
+bindsym $mod+Shift+e exec sysmenu
+
+# Password manager
+bindsym $mod+Shift+p exec passmenu
+
+# Audio
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioNext exec playerctl next
+
+# Screenshot
+bindsym $mod+Print exec screenshot "save"
+bindsym $mod+Shift+Print exec screenshot "copy"
+bindsym $mod+Shift+t exec screenshot "extract-text"
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+### Layout key bindings
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+floating_modifier $mod normal
+
+# Move focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Layouts
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen mode
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
+
+### Workspace key bindings
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+### Resize key bindings
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+### Status Bar
+
+bar {
+    position top
+    status_command while statusbar; do sleep 1; done
+
+    colors {
+        background #222222
+        statusline #9b8d7f
+
+        # target           border   bg       text
+        focused_workspace  #9b8d7f  #9b8d7f  #222222
+        inactive_workspace #222222  #222222  #9b8d7f
+        active_workspace   #222222  #222222  #9b8d7f
+        urgent_workspace   #222222  #222222  #9b8d7f
+        binding_mode       #222222  #222222  #9b8d7f
+    }
+}
+
+include /etc/sway/config.d/*

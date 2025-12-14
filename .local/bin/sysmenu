@@ -1,0 +1,18 @@
+#!/bin/sh
+
+options="Lock\nPoweroff\nReboot\nSuspend\nLogout"
+action=$(echo "$options" | wmenu -i -p "Select action:" -f "pango:CommitMono 12")
+
+[ -z "$action" ] && exit
+
+confirm=$(echo "Yes\nNo" | wmenu -i -p "Confirm $action?" -f "pango:CommitMono 12")
+
+if [ "$confirm" = "Yes" ]; then
+    case "$action" in
+        Lock) playerctl pause; swaylock -f ;;
+        Poweroff) systemctl poweroff ;;
+        Reboot) systemctl reboot ;;
+        Suspend) systemctl suspend ;;
+        Logout) swaymsg exit ;;
+    esac
+fi

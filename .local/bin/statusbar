@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Volume
+vol_line=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+vol_val=$(echo "$vol_line" | awk '{printf "%d\n", $2 * 100}')
+if echo "$vol_line" | grep -q "MUTED"; then
+    vol_icon="󰖁"
+elif [ "$vol_val" -ge 50 ]; then
+    vol_icon="󰕾"
+else
+    vol_icon="󰖀"
+fi
+volume="$vol_icon $vol_val%"
+ 
+# Keyboard Layout
+layout=$(swaymsg -t get_inputs \
+    | grep -m1 "xkb_active_layout_name" \
+    | sed 's/.*: "//;s/",.*//'
+)
+case "$layout" in
+    *English*) layout="us" ;;
+    *Russian*) layout="ru" ;;
+esac
+keyboard="󰌌 $layout"
+ 
+# Network
+eth=$(nmcli -t dev status 2>/dev/null | grep ":ethernet:connected:" | cut -d: -f4)
+wifi=$(nmcli -t dev status 2>/dev/null | grep ":wifi:connected:" | cut -d: -f4)
+ 
+if [ -n "$eth" ]; then
+    network="󰈀 $eth"
+elif [ -n "$wifi" ]; then
+    network="󰖩 $wifi"
+else
+    network="󰖪 Disconnected"
+fi
+ 
+# Clock
+clock="$(date '+󰃭 %a %d %b 󰥔 %H:%M')"
+ 
+# Combine
+echo "$volume | $keyboard | $network | $clock "
