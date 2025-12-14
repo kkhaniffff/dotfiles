@@ -1,0 +1,33 @@
+:root {
+  --bg: #1e1e1e;
+  --bg-alt: #252525;
+  --fg: #d0d0d0;
+  --accent: #8abeb7;
+}
+
+#navigator-toolbox, #TabsToolbar, #PersonalToolbar {
+  background-color: var(--bg) !important;
+}
+
+.tab-background {
+  background-color: var(--bg-alt) !important;
+  border: none !important;
+}
+
+.tab-background[selected] {
+  background-color: var(--accent) !important;
+  color: var(--bg) !important;
+}
+
+#urlbar, .urlbar-textbox, toolbarbutton, .tab-label {
+  color: var(--fg) !important;
+}
+
+menupopup, panel {
+  background-color: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+menuitem:hover, menu:hover {
+  background-color: var(--bg-alt) !important;
+}

@@ -1,0 +1,35 @@
+[font]
+normal = { family = "CommitMono", style = "Regular" }
+size = 11
+
+[window]
+decorations = "None"
+padding = { x = 5, y = 5 }
+
+[colors.primary]
+background = "#1e1e1e"
+foreground = "#d0d0d0"
+
+[colors.normal]
+black   = "#1e1e1e"
+red     = "#cc6766"
+green   = "#b6bd68"
+yellow  = "#de945f"
+blue    = "#8abeb7"
+magenta = "#b294bc"
+cyan    = "#8abeb7"
+white   = "#d0d0d0"
+
+[colors.bright]
+black   = "#252525"
+red     = "#cc6766"
+green   = "#b6bd68"
+yellow  = "#de945f"
+blue    = "#8abeb7"
+magenta = "#b294bc"
+cyan    = "#8abeb7"
+white   = "#d0d0d0"
+
+[colors.cursor]
+text = "#1e1e1e"
+cursor = "#8abeb7"

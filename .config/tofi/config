@@ -1,0 +1,13 @@
+font = CommitMono
+font-size = 12
+
+background-color = #1e1e1e
+text-color = #d0d0d0
+selection-color = #8abeb7
+
+border-width = 2
+border-color = #8abeb7
+
+width = 30%
+height = 20%
+outline-width = 0

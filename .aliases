@@ -1,0 +1,10 @@
+alias vi=nvim
+alias vim=nvim
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias la='ls -la --color=auto'
+alias df='df -h'
+alias du='du -h'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
