@@ -14,7 +14,7 @@ if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
     exit 1
 fi
 
-PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle bemenu mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr unzip"
+PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle bemenu mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr unzip libnotify-bin"
 
 echo "Installing base packages."
 sudo apt-get update >/dev/null
@@ -79,6 +79,8 @@ echo "Cloning dotfiles."
 git clone --bare https://github.com/kkhaniffff/dotfiles.git "$HOME/.dotfiles" >/dev/null
 git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" checkout -f >/dev/null
 git --git-dir="$HOME/.dotfiles" --work-tree="$HOME" config --local status.showUntrackedFiles no >/dev/null
+
+chmod +x $HOME/.config/sway/scripts/*.sh
 
 echo "Setup complete."
 echo "Reboot to make changes take place."

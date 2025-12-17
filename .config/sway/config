@@ -50,7 +50,8 @@ set $up k
 set $right l
 set $term alacritty
 set $browser firefox
-set $menu bemenu-run --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --af "#c6d0f5" --ab "#303446" --fn "CommitMono 13" --prompt ">"
+set $menu bemenu-run --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --af "#c6d0f5" --ab "#303446" --fn "CommitMono 13" --ignorecase --prompt ">"
+set $dmenu bemenu --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --af "#c6d0f5" --ab "#303446" --fn "CommitMono 13" --ignorecase
 
 ### Output configuration
 
@@ -59,9 +60,9 @@ output * bg $HOME/.wallpaper.png fill
 ### Idle configuration
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f'
 
 ### Input configuration
 
@@ -79,8 +80,12 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+b exec $browser
 
-# Lock the screen
-bindsym $mod+Ctrl+l exec swaylock
+# System menu
+bindsym $mod+Shift+e exec $HOME/.config/sway/scripts/sysmenu.sh $dmenu
+
+# Password manager
+bindsym $mod+Shift+p exec $HOME/.config/sway/scripts/passmenu.sh $dmenu
+for_window [title="GPG Pinentry"] floating enable, move position center, resize set 620 210
 
 # Audio
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -93,15 +98,12 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Screenshot
-bindsym Print exec slurp | grim -t png -g - $HOME/pictures/screenshots/$(date +"screenshot_%Y-%m-%d.%H:%M:%S.png")
-bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy -t image/png
-bindsym $mod+Shift+t exec slurp | xargs -I {} grim -s 2 -t png -g {} - | tesseract - - | wl-copy -n
+bindsym Print exec $HOME/.config/sway/scripts/screenshot.sh "save"
+bindsym $mod+Print exec $HOME/.config/sway/scripts/screenshot.sh "copy"
+bindsym $mod+Shift+t exec $HOME/.config/sway/scripts/screenshot.sh "extract-text"
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
-
-# Exit Sway
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 ### Layout key bindings
 
@@ -183,7 +185,7 @@ bindsym $mod+r mode "resize"
 bar {
     position top
 
-    status_command while "sh $HOME/.config/sway/status.sh"; do sleep 1; done
+    status_command while "$HOME/.config/sway/scripts/statusbar.sh"; do sleep 1; done
 
     colors {
         background         $base
