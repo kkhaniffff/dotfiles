@@ -8,15 +8,12 @@ selected=$(echo "$entries" | $menu_cmd -p "Select password:")
 
 [ -z "$selected" ] && exit
 
-unset GPG_TTY
-
 if timeout 2s pass show -c "$selected"; then
     notify-send "Password manager" "Copied to clipboard!"
     exit 0
 fi
 
 # If GPG requires passphrase, spawn a new terminal with the pinentry
-if alacritty --title "GPG Pinentry" -e sh -c "pass show -c '$selected';"; then
-    notify-send "Password manager" "Copied to clipboard!"
-    exit 0
-fi
+alacritty --title "GPG Pinentry" -e sh -c '
+    pass show -c "$1" && notify-send "Password manager" "Copied to clipboard!"
+' sh "$selected"
