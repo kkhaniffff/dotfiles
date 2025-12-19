@@ -4,7 +4,6 @@ size = 11
 
 [window]
 decorations = "None"
-opacity = 0.9
 
 [colors.primary]
 background = "#303446"

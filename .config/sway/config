@@ -39,7 +39,10 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-default_border pixel 2
+### Window decorations
+
+for_window [app_id=".*"] opacity 0.92, border pixel 2
+for_window [title="GPG Pinentry"] floating enable, move position center, resize set 607 192
 
 ### Variables
 
@@ -86,7 +89,6 @@ bindsym $mod+Shift+e exec $HOME/.config/sway/scripts/sysmenu.sh $dmenu
 
 # Password manager
 bindsym $mod+Shift+p exec $HOME/.config/sway/scripts/passmenu.sh $dmenu
-for_window [title="GPG Pinentry"] floating enable, move position center, resize set 620 210
 
 # Audio
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
