@@ -1,6 +1,9 @@
 {
     "logo": {
-        "type": "small",
+        "source": "$HOME/.config/fastfetch/ascii",
+        "color": {
+            "1": "white"
+        }
     },
     "display": {
         "separator": " "
