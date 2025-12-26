@@ -3,44 +3,24 @@
 font pango:CommitMono 10
 
 ### Theme
+set $bg       #1E1E1E
+set $bg_alt   #262626
+set $fg       #DADADA
+set $fg_muted #B0B0B0
+set $accent   #5C9A8E
+set $error    #E46876
 
-set $rosewater #f2d5cf
-set $flamingo #eebebe
-set $pink #f4b8e4
-set $mauve #ca9ee6
-set $red #e78284
-set $maroon #ea999c
-set $peach #ef9f76
-set $yellow #e5c890
-set $green #a6d189
-set $teal #81c8be
-set $sky #99d1db
-set $sapphire #85c1dc
-set $blue #8caaee
-set $lavender #babbf1
-set $text #c6d0f5
-set $subtext1 #b5bfe2
-set $subtext0 #a5adce
-set $overlay2 #949cbb
-set $overlay1 #838ba7
-set $overlay0 #737994
-set $surface2 #626880
-set $surface1 #51576d
-set $surface0 #414559
-set $base #303446
-set $mantle #292c3c
-set $crust #232634
-
-# target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
-client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-client.background        $base
+# target                title    bg      text      indicator  border
+client.focused          $accent  $bg_alt $fg       $accent    $accent
+client.focused_inactive $bg_alt  $bg     $fg_muted $bg_alt    $bg_alt
+client.unfocused        $bg_alt  $bg     $fg_muted $bg_alt    $bg_alt
+client.urgent           $error   $bg_alt $fg       $error     $error
+client.placeholder      $bg      $bg     $fg_muted $bg        $bg
+client.background       $bg
 
 ### Window decorations
 
+gaps inner 5
 for_window [app_id=".*"] opacity 0.92, border pixel 2
 for_window [title="GPG Pinentry"] floating enable, move position center, resize set 607 192
 
@@ -53,8 +33,8 @@ set $up k
 set $right l
 set $term alacritty
 set $browser firefox
-set $menu bemenu-run --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --af "#c6d0f5" --ab "#303446" --fn "CommitMono 13" --ignorecase --prompt ">"
-set $dmenu bemenu --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --af "#c6d0f5" --ab "#303446" --fn "CommitMono 13" --ignorecase
+set $menu bemenu-run --tb "#5C9A8E" --tf "#DADADA" --fb "#1E1E1E" --ff "#DADADA" --nb "#1E1E1E" --nf "#B0B0B0" --hb "#262626" --hf "#5C9A8E" --sb "#262626" --sf "#DADADA" --scb "#1E1E1E" --scf "#E46876" --fn "CommitMono 14" --ignorecase --prompt ">"
+set $dmenu bemenu --fb --tb "#5C9A8E" --tf "#DADADA" --fb "#1E1E1E" --ff "#DADADA" --nb "#1E1E1E" --nf "#B0B0B0" --hb "#262626" --hf "#5C9A8E" --sb "#262626" --sf "#DADADA" --scb "#1E1E1E" --scf "#E46876" --fn "CommitMono 14" --ignorecase
 
 ### Output configuration
 
@@ -186,21 +166,20 @@ bindsym $mod+r mode "resize"
 ### Status Bar
 
 bar {
+    gaps 5
     position top
-
     status_command while "$HOME/.config/sway/scripts/statusbar.sh"; do sleep 1; done
 
     colors {
-        background         $base
-        statusline         $text
-        focused_statusline $text
-        focused_separator  $base
+        background $bg
+        statusline $fg
+        separator  $bg_alt
 
-        # target           border bg        text
-        focused_workspace  $base  $mauve    $crust
-        active_workspace   $base  $surface2 $text
-        inactive_workspace $base  $base     $text
-        urgent_workspace   $base  $red      $crust
+        # target           border   bg       text
+        focused_workspace  $accent  $accent  $bg
+        active_workspace   $bg_alt  $bg_alt  $fg_muted
+        inactive_workspace $bg      $bg      $fg_muted
+        urgent_workspace   $error   $bg_alt  $fg
     }
 }
 
