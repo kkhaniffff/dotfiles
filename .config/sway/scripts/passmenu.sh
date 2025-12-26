@@ -4,7 +4,7 @@ menu_cmd="$@"
 
 entries=$(pass git ls-files '*.gpg' | sed 's/\.gpg$//')
 
-selected=$(echo "$entries" | $menu_cmd -p "Select password:")
+selected=$(echo "$entries" | $menu_cmd --prompt-text "Select password:")
 
 [ -z "$selected" ] && exit
 

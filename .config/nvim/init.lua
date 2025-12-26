@@ -8,8 +8,20 @@ vim.opt.shiftwidth = 0
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.undofile = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.fileignorecase = true
+vim.opt.wildignorecase = true
 vim.opt.clipboard = "unnamedplus"
-vim.opt.path = vim.opt.path + "**"
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.path:append("**")
+vim.opt.termguicolors = true
+vim.cmd[[colorscheme habamax]]
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+    pattern = "[^l]*",
+    command = "cwindow"
+})
 
 -- LSP
 vim.lsp.config("rust-analyzer", {
@@ -20,50 +32,16 @@ vim.lsp.config("rust-analyzer", {
 
 vim.lsp.enable("rust-analyzer")
 
--- Plugins
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-    spec = { 
-        {
-            "nvim-telescope/telescope.nvim", 
-            tag = "v0.2.0",
-            dependencies = {
-                "nvim-lua/plenary.nvim"
-            }
-        },
-        {
-            "catppuccin/nvim",
-            name = "catppuccin",
-            priority = 1000
-        },
-    },
-    checker = { enabled = true },
-})
-
--- Colorscheme
-vim.opt.termguicolors = true
-vim.cmd[[colorscheme catppuccin-frappe]]
-
 -- Keymaps
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Telescope LSP references" })
-vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Telescope LSP implementations" })
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP definition" })
+local map = vim.keymap.set
+map("n", "<leader><leader>", ":find<space>", { desc = "Find files" })
+map("n", "<leader>,", ":buffers<CR>:buffer<space>", { desc = "Show buffers" })
+map("n", "<leader>/", ":silent grep<space>", { desc = "Live grep" })
+map("n", "<leader>q", ":copen<CR>")
+map("n", "]q", ":cnext<CR>")
+map("n", "[q", ":cprev<CR>")
+map("n", "gr", vim.lsp.buf.references, { desc = "Show references" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "Show implementations" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "ga", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "<Esc>", "<Esc>:nohlsearch<CR>", { silent = true })

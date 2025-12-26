@@ -4,11 +4,11 @@ menu_cmd="$@"
 
 options="Lock\nPoweroff\nReboot\nSuspend\nLogout"
 
-action=$(echo "$options" | $menu_cmd -p "Select action:")
+action=$(echo "$options" | $menu_cmd --prompt-text "Select action:")
 
 [ -z "$action" ] && exit
 
-confirm=$(echo "Yes\nNo" | $menu_cmd -p "Confirm $action?")
+confirm=$(echo "Yes\nNo" | $menu_cmd --prompt-text "Confirm $action?")
 
 if [ "$confirm" = "Yes" ]; then
     case "$action" in

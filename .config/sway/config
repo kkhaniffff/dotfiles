@@ -3,18 +3,18 @@
 font pango:CommitMono 10
 
 ### Theme
-set $bg       #1E1E1E
-set $bg_alt   #262626
-set $fg       #DADADA
-set $fg_muted #B0B0B0
-set $accent   #5C9A8E
-set $error    #E46876
+set $bg       #1e1e1e
+set $bg_alt   #252525
+set $fg       #d0d0d0
+set $fg_muted #a8a8a8
+set $accent   #669985
+set $urgent   #a87878
 
 # target                title    bg      text      indicator  border
-client.focused          $accent  $bg_alt $fg       $accent    $accent
-client.focused_inactive $bg_alt  $bg     $fg_muted $bg_alt    $bg_alt
-client.unfocused        $bg_alt  $bg     $fg_muted $bg_alt    $bg_alt
-client.urgent           $error   $bg_alt $fg       $error     $error
+client.focused          $accent  $accent $bg       $accent    $accent
+client.focused_inactive $bg_alt  $bg_alt $fg       $accent    $bg_alt
+client.unfocused        $bg_alt  $bg_alt $fg_muted $accent    $bg_alt
+client.urgent           $urgent  $urgent $fg       $urgent    $urgent
 client.placeholder      $bg      $bg     $fg_muted $bg        $bg
 client.background       $bg
 
@@ -22,7 +22,7 @@ client.background       $bg
 
 gaps inner 5
 for_window [app_id=".*"] opacity 0.92, border pixel 2
-for_window [title="GPG Pinentry"] floating enable, move position center, resize set 607 192
+for_window [title="GPG Pinentry"] floating enable, move position center, resize set 800 400
 
 ### Variables
 
@@ -33,8 +33,8 @@ set $up k
 set $right l
 set $term alacritty
 set $browser firefox
-set $menu bemenu-run --tb "#5C9A8E" --tf "#DADADA" --fb "#1E1E1E" --ff "#DADADA" --nb "#1E1E1E" --nf "#B0B0B0" --hb "#262626" --hf "#5C9A8E" --sb "#262626" --sf "#DADADA" --scb "#1E1E1E" --scf "#E46876" --fn "CommitMono 14" --ignorecase --prompt ">"
-set $dmenu bemenu --fb --tb "#5C9A8E" --tf "#DADADA" --fb "#1E1E1E" --ff "#DADADA" --nb "#1E1E1E" --nf "#B0B0B0" --hb "#262626" --hf "#5C9A8E" --sb "#262626" --sf "#DADADA" --scb "#1E1E1E" --scf "#E46876" --fn "CommitMono 14" --ignorecase
+set $menu tofi-drun --prompt-text "Run app:" --drun-launch=true
+set $dmenu tofi
 
 ### Output configuration
 
@@ -81,8 +81,8 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
 
 # Screenshot
-bindsym Print exec $HOME/.config/sway/scripts/screenshot.sh "save"
-bindsym $mod+Print exec $HOME/.config/sway/scripts/screenshot.sh "copy"
+bindsym $mod+Print exec $HOME/.config/sway/scripts/screenshot.sh "save"
+bindsym $mod+Shift+Print exec $HOME/.config/sway/scripts/screenshot.sh "copy"
 bindsym $mod+Shift+t exec $HOME/.config/sway/scripts/screenshot.sh "extract-text"
 
 # Reload the configuration file
@@ -173,13 +173,13 @@ bar {
     colors {
         background $bg
         statusline $fg
-        separator  $bg_alt
+        separator  $fg_muted
 
         # target           border   bg       text
         focused_workspace  $accent  $accent  $bg
-        active_workspace   $bg_alt  $bg_alt  $fg_muted
+        active_workspace   $bg_alt  $bg_alt  $fg
         inactive_workspace $bg      $bg      $fg_muted
-        urgent_workspace   $error   $bg_alt  $fg
+        urgent_workspace   $urgent  $urgent  $fg
     }
 }
 

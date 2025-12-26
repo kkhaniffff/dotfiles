@@ -1,0 +1,103 @@
+TERM alacritty
+TERM xterm-256color
+
+NORMAL 00;38;5;252  # normal text (#d0d0d0 approx)
+FILE 00
+DIR 01;38;5;72      # directories (#669985 bold)
+LINK 38;5;248       # symlinks (#a8a8a8 muted)
+MULTIHARDLINK 00
+FIFO 40;33
+SOCK 01;35
+DOOR 01;35
+BLK 01;33
+CHR 01;33
+ORPHAN 40;31
+MISSING 00
+SETUID 37;41
+SETGID 30;43
+CAPABILITY 30;41
+STICKY_OTHER_WRITABLE 30;42
+OTHER_WRITABLE 34;42
+STICKY 37;44
+EXEC 38;5;72    # executables (accent non-bold)
+
+# Archives/compressed (muted accent)
+*.tar 38;5;72
+*.tgz 38;5;72
+*.arc 38;5;72
+*.arj 38;5;72
+*.taz 38;5;72
+*.lha 38;5;72
+*.lz4 38;5;72
+*.lzh 38;5;72
+*.lzma 38;5;72
+*.tlz 38;5;72
+*.txz 38;5;72
+*.zip 38;5;72
+*.z    38;5;72
+*.Z    38;5;72
+*.dz   38;5;72
+*.gz   38;5;72
+*.lz   38;5;72
+*.xz   38;5;72
+*.bz2  38;5;72
+*.bz   38;5;72
+*.tbz  38;5;72
+*.tbz2 38;5;72
+*.tz   38;5;72
+*.deb  38;5;72
+*.rpm  38;5;72
+*.jar  38;5;72
+*.war  38;5;72
+*.ear  38;5;72
+*.sar  38;5;72
+*.rar  38;5;72
+*.alz  38;5;72
+*.ace  38;5;72
+*.zoo  38;5;72
+*.cpio 38;5;72
+*.7z   38;5;72
+*.rz   38;5;72
+
+# Images (muted accent)
+*.jpg  38;5;72
+*.jpeg 38;5;72
+*.gif  38;5;72
+*.bmp  38;5;72
+*.pbm  38;5;72
+*.pgm  38;5;72
+*.ppm  38;5;72
+*.tga  38;5;72
+*.xbm  38;5;72
+*.xpm  38;5;72
+*.tif  38;5;72
+*.tiff 38;5;72
+*.png  38;5;72
+*.svg  38;5;72
+*.svgz 38;5;72
+*.mng  38;5;72
+*.pcx  38;5;72
+*.mov  38;5;72
+*.mpg  38;5;72
+*.mpeg 38;5;72
+*.mkv  38;5;72
+*.webm 38;5;72
+*.webp 38;5;72
+*.mp4  38;5;72
+*.wmv  38;5;72
+*.flv  38;5;72
+
+# Audio (muted accent)
+*.aac  38;5;72
+*.au   38;5;72
+*.flac 38;5;72
+*.mid  38;5;72
+*.midi 38;5;72
+*.mp3  38;5;72
+*.ogg  38;5;72
+*.wav  38;5;72
+
+# Broken symlinks / missing files (urgent muted red)
+*.lnk 01;38;5;131
+ORPHAN 01;38;5;131
+MISSING 01;38;5;131

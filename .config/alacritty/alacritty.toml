@@ -4,27 +4,32 @@ size = 11
 
 [window]
 decorations = "None"
+padding = { x = 5, y = 5 }
 
 [colors.primary]
-background = "#1E1E1E"
-foreground = "#DADADA"
+background = "#1e1e1e"
+foreground = "#d0d0d0"
 
 [colors.normal]
-black = "#1E1E1E"
-red = "#E46876"
-green = "#9ECE6A"
-yellow = "#E0AF68"
-blue = "#5C9A8E"
-magenta = "#BB9AF7"
-cyan = "#7DCFFF"
-white = "#DADADA"
+black = "#1e1e1e"
+red = "#a87878"
+green = "#669985"
+yellow = "#a87878"
+blue = "#669985"
+magenta = "#669985"
+cyan = "#669985"
+white = "#d0d0d0"
 
 [colors.bright]
-black = "#262626"
-red = "#E46876"
-green = "#9ECE6A"
-yellow = "#E0AF68"
-blue = "#5C9A8E"
-magenta = "#BB9AF7"
-cyan = "#7DCFFF"
-white = "#B0B0B0"
+black = "#252525"
+red = "#a87878"
+green = "#669985"
+yellow = "#a87878"
+blue = "#669985"
+magenta = "#669985"
+cyan = "#669985"
+white = "#d0d0d0"
+
+[colors.cursor]
+text = "#1e1e1e"
+cursor = "#669985"

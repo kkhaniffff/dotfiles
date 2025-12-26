@@ -14,7 +14,7 @@ if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
     exit 1
 fi
 
-PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle bemenu mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr unzip libnotify-bin"
+PKGS="git fish build-essential network-manager pipewire xdg-desktop-portal-wlr ufw alacritty sway swaybg swaylock swayidle tofi mako-notifier fastfetch wl-clipboard grim slurp tesseract-ocr ripgrep pass firefox-esr unzip libnotify-bin"
 
 echo "Installing base packages."
 sudo apt-get update >/dev/null

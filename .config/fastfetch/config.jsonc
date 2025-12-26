@@ -14,51 +14,42 @@
             "type": "custom"
         },
         {
-            "key": "│ {#31} user    {#keys}│",
+            "key": "│  user    │",
             "type": "title",
             "format": "{user-name}"
         },
         {
-            "key": "│ {#33}󰅐 uptime  {#keys}│",
+            "key": "│ 󰅐 uptime  │",
             "type": "uptime"
         },
         {
-            "key": "│ {#34}{icon} distro  {#keys}│",
+            "key": "│ {icon} distro  │",
             "type": "os",
             "format": "{id} {codename}"
         },
         {
-            "key": "│ {#35} wm      {#keys}│",
+            "key": "│  wm      │",
             "type": "wm",
             "format": "{pretty-name}"
         },
         {
-            "key": "│ {#37} term    {#keys}│",
+            "key": "│  term    │",
             "type": "terminal",
             "format": "{pretty-name}"
         },
         {
-            "key": "│ {#32} shell   {#keys}│",
+            "key": "│  shell   │",
             "type": "shell",
             "format": "{pretty-name}"
         },
         {
-            "type": "packages",
-            "key": "│ {#33}󰏖 apps    {#keys}│"
+            "key": "│ 󰏖 apps    │",
+            "type": "packages"
         },
         {
-            "key": "│ {#36}󰉉 memory  {#keys}│",
+            "key": "│ 󰉉 memory  │",
             "type": "memory",
             "format": "{used} / {total}"
-        },
-        {
-            "key": "├───────────┤",
-            "type": "custom"
-        },
-        {
-            "key": "│ {#39} colors  {#keys}│",
-            "type": "colors",
-            "symbol": "circle"
         },
         {
             "key": "╰───────────╯",

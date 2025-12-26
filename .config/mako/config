@@ -3,11 +3,10 @@ default-timeout=10000
 max-history=10
 padding=10
 
-background-color=#1E1E1E
-text-color=#DADADA
-border-color=#5C9A8E
-progress-color=over #5C9A8E
+background-color=#1e1e1e
+text-color=#d0d0d0
+border-color=#669985
 
 [urgency=high]
 default-timeout=0
-border-color=#E46876
+border-color=#a87878
