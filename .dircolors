@@ -1,10 +1,10 @@
 TERM alacritty
 TERM xterm-256color
 
-NORMAL 00;38;5;252  # normal text (#d0d0d0 approx)
+NORMAL 00;38;5;252
 FILE 00
-DIR 01;38;5;72      # directories (#669985 bold)
-LINK 38;5;248       # symlinks (#a8a8a8 muted)
+DIR 01;35
+LINK 38;5;248
 MULTIHARDLINK 00
 FIFO 40;33
 SOCK 01;35
@@ -19,9 +19,8 @@ CAPABILITY 30;41
 STICKY_OTHER_WRITABLE 30;42
 OTHER_WRITABLE 34;42
 STICKY 37;44
-EXEC 38;5;72    # executables (accent non-bold)
+EXEC 38;5;72
 
-# Archives/compressed (muted accent)
 *.tar 38;5;72
 *.tgz 38;5;72
 *.arc 38;5;72
@@ -59,7 +58,6 @@ EXEC 38;5;72    # executables (accent non-bold)
 *.7z   38;5;72
 *.rz   38;5;72
 
-# Images (muted accent)
 *.jpg  38;5;72
 *.jpeg 38;5;72
 *.gif  38;5;72
@@ -87,7 +85,6 @@ EXEC 38;5;72    # executables (accent non-bold)
 *.wmv  38;5;72
 *.flv  38;5;72
 
-# Audio (muted accent)
 *.aac  38;5;72
 *.au   38;5;72
 *.flac 38;5;72
@@ -97,7 +94,6 @@ EXEC 38;5;72    # executables (accent non-bold)
 *.ogg  38;5;72
 *.wav  38;5;72
 
-# Broken symlinks / missing files (urgent muted red)
 *.lnk 01;38;5;131
 ORPHAN 01;38;5;131
 MISSING 01;38;5;131
