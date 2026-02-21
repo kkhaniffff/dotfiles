@@ -31,7 +31,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term alacritty
+set $term foot
 set $browser firefox
 set $menu tofi-drun --prompt-text "Run app:" --drun-launch=true
 
