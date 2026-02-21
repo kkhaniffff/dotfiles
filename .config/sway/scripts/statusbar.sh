@@ -1,18 +1,5 @@
 #!/bin/sh
 
-# Backlight
-val=$(cat /sys/class/backlight/*/brightness)
-max=$(cat /sys/class/backlight/*/max_brightness)
-pct=$(( val * 100 / max ))
-if [ "$pct" -ge 66 ]; then
-    bl_icon="󰃠"
-elif [ "$pct" -ge 33 ]; then
-    bl_icon="󰃟"
-else
-    bl_icon="󰃞"
-fi
-backlight="$bl_icon $pct%"
-
 # Volume
 vol_line=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
 vol_val=$(echo "$vol_line" | awk '{printf "%d\n", $2 * 100}')
@@ -36,23 +23,6 @@ case "$layout" in
 esac
 keyboard="󰌌 $layout"
 
-# Battery
-cap=$(cat /sys/class/power_supply/BAT0/capacity)
-status=$(cat /sys/class/power_supply/BAT0/status)
-case $cap in
-    9[0-9]|100) bat_icon="󰁹" ;;
-    8[0-9]) bat_icon="󰂂" ;;
-    [6-7][0-9]) bat_icon="󰂀" ;;
-    5[0-9]) bat_icon="󰁿" ;;
-    4[0-9]) bat_icon="󰁽" ;;
-    3[0-9]) bat_icon="󰁼" ;;
-    2[0-9]) bat_icon="󰁻" ;;
-    1[0-9]) bat_icon="󰁺" ;;
-    *) bat_icon="󰂎" ;;
-esac
-[ "$status" = "Charging" ] && bat_icon="󰂄"
-battery="$bat_icon $cap%"
-
 # Network
 wifi=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
 if [ -n "$wifi" ]; then
@@ -67,4 +37,4 @@ fi
 clock="$(date '+󰃭 %a %d %b 󰥔 %H:%M')"
 
 # Combine
-echo "$backlight | $volume | $keyboard | $battery | $network | $clock "
+echo "$volume | $keyboard | $network | $clock "

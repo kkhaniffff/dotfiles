@@ -14,7 +14,7 @@ if [ "$ans" != "y" ] && [ "$ans" != "Y" ]; then
     exit 1
 fi
 
-PKGS="build-essential network-manager pipewire xdg-desktop-portal-wlr playerctl ufw git fish unzip alacritty zathura pass aerc ripgrep jq sway swaybg swaylock swayidle tofi mako-notifier libnotify-bin wl-clipboard grim slurp tesseract-ocr firefox-esr"
+PKGS="build-essential network-manager pipewire xdg-desktop-portal-wlr playerctl ufw git fish unzip foot zathura pass aerc ripgrep jq sway swaybg swaylock swayidle tofi mako-notifier libnotify-bin wl-clipboard grim slurp tesseract-ocr firefox-esr"
 
 echo "Installing base packages."
 sudo apt-get update >/dev/null
@@ -22,7 +22,6 @@ sudo apt-get install -y $PKGS >/dev/null
 
 echo "Configuring network."
 sudo systemctl enable --now NetworkManager >/dev/null
-sudo apt-get purge -y ifupdown >/dev/null
 sudo sed -i '/^\[ifupdown\]/,/^$/s/^managed=false/managed=true/' /etc/NetworkManager/NetworkManager.conf
 
 echo "Configuring firewall."
