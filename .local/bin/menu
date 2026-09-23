@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cmd=wmenu
+prompt=""
+
+while getopts 'p:r' opt; do
+	case "$opt" in
+		p) prompt="$OPTARG" ;;
+		r) cmd=wmenu-run ;;
+		\?) exit 2 ;;
+	esac
+done
+
+"$cmd" -N 222222 -n 9b8d7f -S 9b8d7f -s 222222 -M 9b8d7f -m 222222 -i -p "$prompt"
